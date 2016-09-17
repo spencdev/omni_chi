@@ -1,0 +1,187 @@
+@import "compass";
+@import "breakpoint";
+@import "singularitygs";
+
+// set spacing units
+$vert-spacing-unit: 21px;
+$horz-spacing-unit: 14px;
+$base-font-size: 14px;
+
+//responsive screen sizes
+$tablet: 700px;
+$desktop: 1250px;
+//$wide: 1824px;
+$wide: 1540px;
+
+// set grid
+$grids: 1;
+$grids: add-grid(12 at $tablet);
+$gutters: 1/3;
+
+
+.l-constrained {
+	max-width: $wide;
+	width: 95%;
+	margin: 0 auto;
+	@include pie-clearfix;
+}
+
+
+
+.l-header,
+.l-highlight,
+.l-main,
+.l-lower,
+.l-footer {
+	margin-bottom: $vert-spacing-unit;
+	@include pie-clearfix;
+}
+
+
+body {
+	@include breakpoint(1em) {
+        	nav.block--system-main-menu,
+        	nav.omni-chi-menu--main-menu {
+                	ul.menu {
+                        	display: none;
+                	}
+        	}
+        	.slicknav_menu {
+                	display: block;
+        	}
+	}
+	@include breakpoint($tablet) {
+        	nav.block--system-main-menu,
+        	nav.omni-chi-menu--main-menu {
+                	ul.menu {
+                        	display: block;
+                	}
+        	}
+        	.slicknav_menu {
+                	display: none;
+        	}
+	}
+	padding-top: 0px;
+}
+
+
+
+
+// This class is added in the subtheme's theme_preprocess_page() page
+// if they want these defaults.
+.omni-chi-alpha-default {
+	@include breakpoint(1em) {
+
+		// center the logo in mobile
+		.l-branding {
+			img {
+				margin: 0 auto;
+				display: block;
+			}
+		}
+		.l-content {
+			@include grid-span(12, 1);
+		}
+		.has-one-sidebar,
+		.has-two-sidebars {
+			.l-region--sidebar-first,
+			.l-region--sidebar-second {
+				@include grid-span(12, 1);
+			}
+		}
+
+		// clear the footer regions in mobile
+		.l-footer {
+			& > .l-region {
+				clear: both;
+			}
+		}
+	}
+	@include breakpoint($tablet) {
+		.l-header {
+			margin-top: $vert-spacing-unit;
+		}
+		.has-no-sidebars {
+			.l-content {
+				@include grid-span(12, 1);
+			}
+		}
+		.has-one-sidebar {
+			&.has-sidebar-first {
+				.l-region--sidebar-first {
+					@include grid-span(4, 1);
+				}
+				.l-content {
+					@include grid-span(8, 5);
+				}
+			}
+			&.has-sidebar-second {
+				.l-region--sidebar-second {
+					@include grid-span(4, 9);
+				}
+				.l-content {
+					@include grid-span(8, 1);
+				}
+			}
+		}
+		.has-two-sidebars {
+			.l-region--sidebar-first {
+				@include grid-span(4, 1);
+			}
+			.l-content {
+				@include grid-span(8, 5);
+			}
+			.l-region--sidebar-second {
+				@include grid-span(12, 1);
+			}
+		}
+
+		// set the logo back left
+		.l-branding {
+			img {
+				margin: 0;
+			}
+		}
+
+		// un-clear the footer regions in tablet and display
+		// the regions in-line
+		.l-footer {
+			& > .l-region {
+				display: inline-block;
+				vertical-align: top;
+				clear: none;
+			}
+		}
+	}
+	@include breakpoint($desktop) {
+		.has-one-sidebar {
+			&.has-sidebar-first {
+				.l-region--sidebar-first {
+					@include grid-span(3, 1);
+				}
+				.l-content {
+					@include grid-span(9, 4);
+				}
+			}
+			&.has-sidebar-second {
+				.l-content {
+					@include grid-span(9, 1);
+				}
+				.l-region--sidebar-second {
+					@include grid-span(3, 10);
+				}
+			}
+		}
+		.has-two-sidebars {
+			.l-region--sidebar-first {
+				@include grid-span(3, 1);
+			}
+			.l-content {
+				@include grid-span(6, 4);
+			}
+			.l-region--sidebar-second {
+				@include grid-span(3, 10);
+			}
+		}
+	}
+}

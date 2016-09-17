@@ -1,0 +1,13 @@
+/* Strip bullets from main menu and set to in-line */
+nav.block--system-main-menu,
+nav.omni-chi-menu--main-menu {
+	ul.menu {
+		@include no-bullets;
+		@include inline-block-list(1em);
+	}
+
+	a {
+		@include unstyled-link;
+		cursor: pointer;
+	}
+}
